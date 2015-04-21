@@ -9,13 +9,15 @@ grails.project.dependency.resolution = {
     repositories {
         grailsHome()
         grailsCentral()
-
+        mavenLocal()
         mavenCentral()
 
-        mavenRepo "https://repository.intuitive-collaboration.com/nexus/content/repositories/pillarone-public/"
+        mavenRepo (name:"zh-artisan-test" , url:"http://zh-artisan-test.art-allianz.com:8085/nexus/content/groups/public/") {
+            updatePolicy System.getProperty('snapshotUpdatePolicy') ?: 'daily'
+        }
     }
 
-    String ulcVersion = "7.2.0.6"
+    String ulcVersion = "7.2.0.8"
 
     plugins {
         runtime ":release:3.0.1", {
