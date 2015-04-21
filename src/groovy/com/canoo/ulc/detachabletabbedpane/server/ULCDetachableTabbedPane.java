@@ -6,10 +6,7 @@ import com.ulcjava.base.application.ULCMenuItem;
 import com.ulcjava.base.application.ULCPopupMenu;
 import com.ulcjava.base.application.ULCWindow;
 import com.ulcjava.base.application.UlcUtilities;
-import com.ulcjava.base.application.event.ActionEvent;
-import com.ulcjava.base.application.event.IActionListener;
-import com.ulcjava.base.application.event.IWindowListener;
-import com.ulcjava.base.application.event.WindowEvent;
+import com.ulcjava.base.application.event.*;
 import com.ulcjava.base.application.util.Dimension;
 import com.ulcjava.base.application.util.ULCIcon;
 import com.ulcjava.base.server.ULCSession;
@@ -196,6 +193,13 @@ public class ULCDetachableTabbedPane extends ULCCloseableTabbedPane {
                 // close all tabs contained in this frame
                 ULCFrame frame = (ULCFrame) event.getSource();
                 ULCCloseableTabbedPane tp = (ULCCloseableTabbedPane) frame.getContentPane().getComponents()[0];
+                EventListener[] listeners = getListeners(TabEvent.EVENT_CATEGORY);
+                int tabCount = tp.getTabCount();
+                for (int i = 0; i < tabCount; i++) {
+                    for (EventListener listener : listeners) {
+                        ((ITabListener) listener).tabClosing(new TabEvent(tp, i, i - 1));
+                    }
+                }
                 tp.removeAll();
                 cleanUpFrames();
             }
