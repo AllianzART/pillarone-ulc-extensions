@@ -1,3 +1,4 @@
+grails.project.plugins.dir = "../local-plugins/RiskAnalyticsUlcExtensions-master"
 grails.project.dependency.resolver = "maven"
 
 grails.project.target.level = 1.6
@@ -17,7 +18,7 @@ grails.project.dependency.resolution = {
         mavenCentral()
     }
 
-    String ulcVersion = "7.2.0.8"
+    String ulcVersion = "7.2.0.9"
 
     plugins {
         runtime ":release:3.0.1", {
