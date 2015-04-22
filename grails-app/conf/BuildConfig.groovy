@@ -8,13 +8,13 @@ grails.project.dependency.resolution = {
 
     repositories {
         grailsHome()
-        grailsCentral()
         mavenLocal()
-        mavenCentral()
-
         mavenRepo (name:"zh-artisan-test" , url:"http://zh-artisan-test.art-allianz.com:8085/nexus/content/groups/public/") {
             updatePolicy System.getProperty('snapshotUpdatePolicy') ?: 'daily'
         }
+        mavenRepo "https://ci.canoo.com/nexus/content/repositories/public-releases"
+        grailsCentral()
+        mavenCentral()
     }
 
     String ulcVersion = "7.2.0.8"
